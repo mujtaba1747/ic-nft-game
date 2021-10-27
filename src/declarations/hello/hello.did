@@ -1,0 +1,40 @@
+type UserInfoExt = 
+ record {
+   allowedBy: vec principal;
+   allowedIds: vec nat;
+   allows: vec principal;
+   tokens: vec nat;
+ };
+type TokenInfoExt = 
+ record {
+   approval: opt principal;
+   desc: text;
+   index: nat;
+   name: text;
+   owner: principal;
+   timestamp: Time;
+   url: text;
+ };
+type Time = int;
+type NFToken = 
+ service {
+   approve: (principal, nat) -> (bool);
+   balanceOf: (principal) -> (nat) query;
+   getAllTokens: () -> (vec nat) query;
+   getApproved: (nat) -> (principal) query;
+   getTokenInfo: (nat) -> (TokenInfoExt) query;
+   getTokenList: (principal) -> (vec nat) query;
+   getUser: (principal) -> (UserInfoExt) query;
+   isApprovedForAll: (principal, principal) -> (bool) query;
+   mint: (text, text, text) -> () oneway;
+   name: () -> (text) query;
+   ownerOf: (nat) -> (principal) query;
+   setApprovalForAll: (principal, bool) -> (bool);
+   setTokenInfo: (TokenInfoExt) -> (bool);
+   symbol: () -> (text) query;
+   tokenByIndex: (nat) -> (nat) query;
+   tokenOfOwnerByIndex: (principal, nat) -> (nat) query;
+   totalSupply: () -> (nat) query;
+   transferFrom: (principal, principal, nat) -> (bool);
+ };
+service : (text, text, principal) -> NFToken

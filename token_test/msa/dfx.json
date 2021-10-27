@@ -1,0 +1,34 @@
+{
+  "canisters": {
+    "msa": {
+      "main": "src/msa/main.mo",
+      "type": "motoko"
+    },
+    "msa_assets": {
+      "dependencies": [
+        "msa"
+      ],
+      "frontend": {
+        "entrypoint": "src/msa_assets/src/index.html"
+      },
+      "source": [
+        "src/msa_assets/assets",
+        "dist/msa_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": ""
+    }
+  },
+  "dfx": "0.7.2",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
